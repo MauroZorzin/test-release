@@ -3,10 +3,6 @@ name: Manual Release Workflow
 on:
   workflow_dispatch:
     inputs:
-      branch:
-        description: 'Branch to build and release'
-        required: true
-        default: 'main'  # Default branch
       tag_name:
         description: 'Tag name for the release'
         required: true
