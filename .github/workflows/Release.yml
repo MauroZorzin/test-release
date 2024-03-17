@@ -3,14 +3,8 @@ name: Manual Release Workflow
 on:
   workflow_dispatch:
     inputs:
-      tag_name:
-        description: 'Tag name for the release'
-        required: true
-      release_name:
-        description: 'Release name'
-        required: true
-      body:
-        description: 'Release body'
+      version:
+        description: 'Version number'
         required: true
       draft:
         description: 'Whether to create the release as a draft'
@@ -28,8 +22,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.inputs.branch }}
 
     - name: Build
       run: |
@@ -41,8 +33,12 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.event.inputs.tag_name }}
-        release_name: ${{ github.event.inputs.release_name }}
-        body: ${{ github.event.inputs.body }}
+        tag_name: v${{ github.event.inputs.version }}
+        release_name: ${{ github.event.inputs.version }}
+        #body: ${{ github.event.inputs.body }}
         draft: ${{ github.event.inputs.draft }}
         prerelease: ${{ github.event.inputs.prerelease }}
+
+    - name: Pubblish on Maven
+    - name: Pubblish on Forge
+    - name: Pubblish on Modrinth 
