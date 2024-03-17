@@ -1,0 +1,52 @@
+name: Manual Release Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to build and release'
+        required: true
+        default: 'main'  # Default branch
+      tag_name:
+        description: 'Tag name for the release'
+        required: true
+      release_name:
+        description: 'Release name'
+        required: true
+      body:
+        description: 'Release body'
+        required: true
+      draft:
+        description: 'Whether to create the release as a draft'
+        required: false
+        default: false
+      prerelease:
+        description: 'Whether to mark the release as a prerelease'
+        required: false
+        default: false
+
+jobs:
+  build_and_release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.inputs.branch }}
+
+    - name: Build
+      run: |
+        # build
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.event.inputs.tag_name }}
+        release_name: ${{ github.event.inputs.release_name }}
+        body: ${{ github.event.inputs.body }}
+        draft: ${{ github.event.inputs.draft }}
+        prerelease: ${{ github.event.inputs.prerelease }}
