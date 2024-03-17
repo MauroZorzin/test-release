@@ -23,6 +23,8 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Sonar
+      uses: ./.github/workflows/sonar.yml
     - name: Build
       run: |
         # build
