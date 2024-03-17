@@ -23,8 +23,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Sonar
-      uses: ./.github/workflows/sonar.yml  # Assuming this is a custom action for Sonar
+    - name: SonarCloud
+      if: github.event_name == 'release'
+      uses: sonarsource/sonarcloud-github-action@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
     - name: Build
       run: |
