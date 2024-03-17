@@ -30,8 +30,7 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
     - name: Build
-      run: |
-        # Add your build commands here
+      uses: ./.github/workflow/build.yml
 
     - name: Create Release
       id: create_release
