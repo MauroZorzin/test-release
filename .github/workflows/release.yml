@@ -24,10 +24,11 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Sonar
-      uses: ./.github/workflows/sonar.yml
+      uses: ./.github/workflows/sonar.yml  # Assuming this is a custom action for Sonar
+
     - name: Build
       run: |
-        # build
+        # Add your build commands here
 
     - name: Create Release
       id: create_release
@@ -37,10 +38,17 @@ jobs:
       with:
         tag_name: v${{ github.event.inputs.version }}
         release_name: ${{ github.event.inputs.version }}
-        #body: ${{ github.event.inputs.body }}
         draft: ${{ github.event.inputs.draft }}
         prerelease: ${{ github.event.inputs.prerelease }}
 
-    - name: Pubblish on Maven
-    - name: Pubblish on Forge
-    - name: Pubblish on Modrinth 
+    - name: Publish on Maven
+      run: |
+        # Add commands to publish on Maven repository
+
+    - name: Publish on Forge
+      run: |
+        # Add commands to publish on Forge repository
+
+    - name: Publish on Modrinth
+      run: |
+        # Add commands to publish on Modrinth repository
