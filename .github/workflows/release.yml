@@ -11,19 +11,6 @@ on:
         required: false
         default: false
       prerelease:
-        description: 'Whether to mark the release as a prerelease'name: Manual Release Workflow
-
-on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version number'
-        required: true
-      draft:
-        description: 'Whether to create the release as a draft'
-        required: false
-        default: false
-      prerelease:
         description: 'Whether to mark the release as a prerelease'
         required: false
         default: false
@@ -41,58 +28,6 @@ jobs:
       with:
         java-version: '17'
         distribution: 'zulu'
-
-    - name: Cache Gradle packages
-      uses: actions/cache@v2
-      with:
-        path: ~/.gradle/caches
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-        restore-keys: ${{ runner.os }}-gradle
-
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: v${{ github.event.inputs.version }}
-        release_name: ${{ github.event.inputs.version }}
-        draft: ${{ github.event.inputs.draft }}
-        prerelease: ${{ github.event.inputs.prerelease }}
-
-    - name: Publish on Maven
-      run: |
-        # Add commands to publish on Maven repository
-
-    - name: Publish on Forge
-      run: |
-        # Add commands to publish on Forge repository
-
-    - name: Publish on Modrinth
-      run: |
-        # Add commands to publish on Modrinth repository
-
-        required: false
-        default: false
-
-jobs:
-  build_and_release:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-   # - name: SonarCloud
-    #  uses: SonarSource/sonarcloud-github-action@master
-    #  env:
-    #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-    - name: Set up JDK 17
-      uses: actions/setup-java@v2
-      with:
-        java-version: '17'
 
     - name: Cache Gradle packages
       uses: actions/cache@v2
