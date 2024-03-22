@@ -60,7 +60,7 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: Package
-        path: staging
+        path: build/libs/*.jar
         retention-days: 1
     - uses: marvinpinto/action-automatic-releases@latest
       with:
