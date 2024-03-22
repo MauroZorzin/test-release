@@ -68,7 +68,7 @@ jobs:
         automatic_release_tag: v${{ github.event.inputs.version }}
         title: "Automated Build ${{ github.event.inputs.version }}"
         prerelease: true
-        files: staging/*.jar
+        files: build/libs/*.jar
 
     - name: Publish on Maven
       run: |
