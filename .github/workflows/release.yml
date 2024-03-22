@@ -51,42 +51,27 @@ jobs:
     - name: Use Gradle 8.3
       run: ./gradlew wrapper --gradle-version 8.3
 
-    - uses: BrycensRanch/read-properties-action@v1.0.3
-      id: all
-      with:
-        file: gradle.properties
-        all: true
-
-    - run: echo ${{ steps.all.outputs.mod_version  }} # Project's version from gradle.properties
-
-
-
-        
-    - name: Publish on GitHub Releases
-      uses: marvinpinto/action-automatic-releases@latest
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        automatic_release_tag: v${{ github.event.inputs.version }}
-        title: "Automated Build ${{ github.event.inputs.version }}"
-        prerelease: true
-        files: fabric/build/libs/${{ env.MOD_ID_KEBAB }}-fabric-$(grep -oP '(?<=minecraft_version = \')[^\']+' build.gradle).jar
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: Release
-        path: fabric/build/libs/$(grep -oP '(?<=mod_id_kebabs = \')[^\']+' build.gradle)-fabric-$(grep -oP '(?<=minecraft_version = \')[^\']+' build.gradle).jar
-        retention-days: 1
-
-
-    - name: Publish on Maven
+    - name: Build and analyze
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to create releases
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # Needed for Sonar analysis, if any
       run: |
-        # Add commands to publish on Maven repository
+        ./gradlew build
+        ./gradlew sonar --stacktrace
 
-    - name: Publish on Forge
-      run: |
-        # Add commands to publish on Forge repository
+    #- uses: BrycensRanch/read-properties-action@v1.0.3
+    #  id: all
+    #  with:
+    #   file: gradle.properties
+    #    all: true
 
-    - name: Publish on Modrinth
+   # - run: echo ${{ steps.all.outputs.mod_version  }} # Project's version from gradle.properties
+
+    - name: Publish 
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        CURSEFORGE: ${{ secrets.CURSEFORGE }}
+        MODRINTH: ${{ secrets.MODRINTH }}
       run: |
-        # Add commands to publish on Modrinth repository
+        ./gradlew publish --stacktrace
+     
