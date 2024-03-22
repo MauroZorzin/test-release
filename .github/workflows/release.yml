@@ -52,26 +52,14 @@ jobs:
     - name: Use Gradle 8.3
       run: ./gradlew wrapper --gradle-version 8.3
 
-    - name: Build and analyze
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: |
-        ./gradlew build
-        ./gradlew sonar --stacktrace
+    - uses: BrycensRanch/read-properties-action@v1
+      id: version
+      with:
+        file: gradle.properties
+        property: version
+        default: 0.0.1
 
-    - name: Read gradle.properties
-      id: extract-properties
-      run: |
-          echo "::set-output name=mod_id_kebab::$(grep -E '^modIdKebab=' gradle.properties | cut -d'=' -f2)"
-
-    - name: Set MOD_ID_KEBAB Environment Variable
-      run: |
-        echo "MOD_ID_KEBAB=$(echo ${{ steps.extract-properties.outputs.mod_id_kebab }})" >> $GITHUB_ENV
-
-    - name: Print Extracted MOD_ID_KEBAB
-      run: |
-          echo "Extracted MOD_ID_KEBAB: $MOD_ID_KEBAB"
+    - run: echo ${{ steps.version.outputs.version }}
 
 
 
