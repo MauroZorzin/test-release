@@ -46,8 +46,8 @@ jobs:
     - name: Set permission
       run: chmod +x ./gradlew
 
-    - name: Use Gradle 8
-      run: ./gradlew wrapper --gradle-version 8.0
+    - name: Use Gradle 8.3
+      run: ./gradlew wrapper --gradle-version 8.3
 
     - name: Build and analyze
       env:
