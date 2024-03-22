@@ -64,9 +64,9 @@ jobs:
         retention-days: 1
     - uses: marvinpinto/action-automatic-releases@latest
       with:
-        repo_token: "${{ secrets.YOUR-GITHUB-TOKEN }}"
-        automatic_release_tag: "${{ github.run_number }}"
-        title: "Automated Build ${{ github.run_number }}"
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        automatic_release_tag: v${{ github.event.inputs.version }}
+        title: "Automated Build ${{ github.event.inputs.version }}
         prerelease: true
         files: staging/*.jar
 
