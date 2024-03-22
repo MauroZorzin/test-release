@@ -16,9 +16,12 @@ on:
         default: false
 
 jobs:
+
+ 
   build_and_release:
     runs-on: ubuntu-latest
-
+    env:
+       MOD_ID_KEBAB: ''
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -60,8 +63,8 @@ jobs:
     - name: Extract mod_id_kebab
       id: extract_mod_id
       run: |
-        mod_id_kebab=$(grep -oP '(?<=mod_id_kebabs = \')[^\']+' build.gradle)
-        echo "::set-output name=mod_id_kebab::$mod_id_kebab"
+        echo "::set-env name=MOD_ID_KEBAB::$(grep -oP '(?<=mod_id_kebabs = \')[^\']+' build.gradle)"
+
         
     - name: Publish on GitHub Releases
       uses: marvinpinto/action-automatic-releases@latest
@@ -70,7 +73,7 @@ jobs:
         automatic_release_tag: v${{ github.event.inputs.version }}
         title: "Automated Build ${{ github.event.inputs.version }}"
         prerelease: true
-        files: fabric/build/libs/${{mod_id_kebab}}-fabric-$(grep -oP '(?<=minecraft_version = \')[^\']+' build.gradle).jar
+        files: fabric/build/libs/${{ env.MOD_ID_KEBAB }}-fabric-$(grep -oP '(?<=minecraft_version = \')[^\']+' build.gradle).jar
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
