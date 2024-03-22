@@ -57,16 +57,18 @@ jobs:
         ./gradlew build
         ./gradlew sonar --stacktrace
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/upload-artifact@v3
       with:
-        tag_name: v${{ github.event.inputs.version }}
-        release_name: ${{ github.event.inputs.version }}
-        draft: ${{ github.event.inputs.draft }}
-        prerelease: ${{ github.event.inputs.prerelease }}
+        name: Package
+        path: staging
+        retention-days: 1
+    - uses: marvinpinto/action-automatic-releases@latest
+      with:
+        repo_token: "${{ secrets.YOUR-GITHUB-TOKEN }}"
+        automatic_release_tag: "${{ github.run_number }}"
+        title: "Automated Build ${{ github.run_number }}"
+        prerelease: true
+        files: staging/*.jar
 
     - name: Publish on Maven
       run: |
