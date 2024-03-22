@@ -20,8 +20,7 @@ jobs:
  
   build_and_release:
     runs-on: ubuntu-latest
-    env:
-       MOD_ID_KEBAB: ''
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -52,14 +51,14 @@ jobs:
     - name: Use Gradle 8.3
       run: ./gradlew wrapper --gradle-version 8.3
 
-    - uses: BrycensRanch/read-properties-action@v1
-      id: version
+    - uses: BrycensRanch/read-properties-action@latest
+      id: all
       with:
         file: gradle.properties
-        property: version
-        default: 0.0.1
+        all: true
 
-    - run: echo ${{ steps.version.outputs.version }}
+    - run: echo ${{ steps.all.outputs.version }} # Project's version from gradle.properties
+    - run: echo ${{ steps.all.outputs.groupId }} # Project's groupID from gradle.properties
 
 
 
