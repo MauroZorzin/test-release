@@ -57,8 +57,7 @@ jobs:
         file: gradle.properties
         all: true
 
-    - run: echo ${{ steps.all.outputs.version }} # Project's version from gradle.properties
-    - run: echo ${{ steps.all.outputs.groupId }} # Project's groupID from gradle.properties
+    - run: echo ${{ steps.all.outputs.mod_version  }} # Project's version from gradle.properties
 
 
 
