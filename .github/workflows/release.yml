@@ -46,8 +46,8 @@ jobs:
     - name: Set permission
       run: chmod +x ./gradlew
 
-    - name: Use Gradle 8.3
-      run: ./gradlew wrapper --gradle-version 8.3
+    - name: Use Gradle 8
+      run: ./gradlew wrapper --gradle-version 8.0
 
     - name: Build and analyze
       env:
@@ -59,7 +59,7 @@ jobs:
 
     - name: Create Release
       id: create_release
-      uses: actions/create-release@v1
+      uses: actions/create-release@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
