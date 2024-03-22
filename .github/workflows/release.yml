@@ -57,18 +57,22 @@ jobs:
         ./gradlew build
         ./gradlew sonar --stacktrace
 
-    - uses: actions/upload-artifact@v3
-      with:
-        name: Package
-        path: build/libs/*.jar
-        retention-days: 1
-    - uses: marvinpinto/action-automatic-releases@latest
+    - name: Publish on GitHub Releases
+      uses: marvinpinto/action-automatic-releases@latest
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         automatic_release_tag: v${{ github.event.inputs.version }}
         title: "Automated Build ${{ github.event.inputs.version }}"
         prerelease: true
-        files: build/libs/*.jar
+        files: fabric/build/libs/$(grep -oP '(?<=mod_id_kebabs = \')[^\']+' build.gradle)-fabric-$(grep -oP '(?<=minecraft_version = \')[^\']+' build.gradle).jar
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Release
+        path: fabric/build/libs/$(grep -oP '(?<=mod_id_kebabs = \')[^\']+' build.gradle)-fabric-$(grep -oP '(?<=minecraft_version = \')[^\']+' build.gradle).jar
+        retention-days: 1
+
 
     - name: Publish on Maven
       run: |
