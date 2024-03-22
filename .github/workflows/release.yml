@@ -63,7 +63,8 @@ jobs:
     - name: Extract mod_id_kebab
       id: extract_mod_id
       run: |
-        echo "::set-env name=MOD_ID_KEBAB::$(grep -oP '(?<=mod_id_kebabs = \')[^\']+' build.gradle)"
+        MOD_ID_KEBAB=$(grep -oP '(?<=mod_id_kebabs = \')[^\']+' build.gradle)
+        echo "MOD_ID_KEBAB=$MOD_ID_KEBAB" >> $GITHUB_ENV
 
         
     - name: Publish on GitHub Releases
