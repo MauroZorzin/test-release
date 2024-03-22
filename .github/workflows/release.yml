@@ -60,11 +60,21 @@ jobs:
         ./gradlew build
         ./gradlew sonar --stacktrace
 
-    - name: Extract mod_id_kebab
-      id: extract_mod_id
+    - name: Read gradle.properties
+      id: extract-properties
       run: |
-        MOD_ID_KEBAB=$(grep -oP "(?<=mod_id_kebabs = ')[^\']+" build.gradle)
-        echo "MOD_ID_KEBAB=$MOD_ID_KEBAB" >> $GITHUB_ENV
+          echo "::set-output name=version::$(grep -E '^version=' gradle.properties | cut -d'=' -f2)"
+          echo "::set-output name=build_number::$(grep -E '^build_number=' gradle.properties | cut -d'=' -f2)"
+
+    - name: Set Environment Variables
+      run: |
+          echo "VERSION=${{ steps.extract-properties.outputs.version }}" >> $GITHUB_ENV
+          echo "BUILD_NUMBER=${{ steps.extract-properties.outputs.build_number }}" >> $GITHUB_ENV
+
+    - name: Print Extracted Properties
+      run: |
+          echo "Extracted version: $VERSION"
+          echo "Extracted build number: $BUILD_NUMBER"
 
 
         
