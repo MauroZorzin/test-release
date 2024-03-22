@@ -47,13 +47,15 @@ jobs:
       run: chmod +x ./gradlew
 
     - name: Use Gradle 8
-      run: ./gradlew wrapper --gradle-version 8.3
+      run: ./gradlew wrapper --gradle-version 8.0
 
     - name: Build and analyze
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: ./gradlew build sonar  --gradle-version 8.3
+      run: |
+        ./gradlew build
+        ./gradlew sonar --stacktrace
 
     - name: Create Release
       id: create_release
