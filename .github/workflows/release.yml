@@ -17,7 +17,6 @@ on:
 
 jobs:
 
- 
   build_and_release:
     runs-on: ubuntu-latest
 
@@ -54,24 +53,15 @@ jobs:
     - name: Build and analyze
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to create releases
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # Needed for Sonar analysis, if any
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # Needed for Sonar analysis
       run: |
-        ./gradlew build
-        ./gradlew sonar --stacktrace
-
-    #- uses: BrycensRanch/read-properties-action@v1.0.3
-    #  id: all
-    #  with:
-    #   file: gradle.properties
-    #    all: true
-
-   # - run: echo ${{ steps.all.outputs.mod_version  }} # Project's version from gradle.properties
+        ./gradlew build sonar --stacktrace
 
     - name: Publish 
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        CURSEFORGE: ${{ secrets.CURSEFORGE }}
-        MODRINTH: ${{ secrets.MODRINTH }}
+        CURSEFORGE: ${{ secrets.CURSEFORGE_TOKEN }}
+        MODRINTH: ${{ secrets.MODRINTH_TOKEN }}
       run: |
         ./gradlew publish --stacktrace
      
