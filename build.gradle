@@ -194,7 +194,13 @@ subprojects { subproject ->
     dependsOn 'githubRelease'
     dependsOn 'modrinth'
     dependsOn 'curseforge'
-    tasks.named('modrinth').mustRunAfter 'githubRelease'
-    tasks.named('curseforge').mustRunAfter 'modrinth'
-  }
+    doLast {
+        // Get token from command line arguments
+        def token = project.hasProperty('token') ? project.token : ""
+        
+        // Pass token to the necessary tasks
+        githubRelease.token = token
+        modrinth.token = token
+        curseforge.apiKey = token
+    }
 }
