@@ -74,5 +74,8 @@ jobs:
         CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
         MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
       run: |
+        export GITHUB_TOKEN=$GITHUB_TOKEN
+        export CURSEFORGE_TOKEN=$CURSEFORGE_TOKEN
+        export MODRINTH_TOKEN=$MODRINTH_TOKEN
         ./gradlew publish --stacktrace
      
