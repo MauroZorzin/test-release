@@ -71,8 +71,8 @@ jobs:
     - name: Publish 
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        CURSEFORGE: ${{ secrets.CURSEFORGE_TOKEN }}
-        MODRINTH: ${{ secrets.MODRINTH_TOKEN }}
+        CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+        MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
       run: |
         ./gradlew publish --stacktrace
      
