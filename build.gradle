@@ -16,7 +16,7 @@ sonar {
 }
 
 task publish {
-  dependsOn subprojects.collect { it.tasks.findByName('customTask') }
+  dependsOn subprojects.collect { it.tasks.findByName('publish') }
 }
 
 subprojects { subproject ->
