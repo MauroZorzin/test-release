@@ -191,12 +191,16 @@ subprojects { subproject ->
   task publish {
     group = "publishing"
     description = "Publish all loader specific versions to all platforms"
-    dependsOn 'curseforge'
-    dependsOn 'modrinth'
-    dependsOn 'githubRelease'
+    dependsOn "curseforge"
+    dependsOn "modrinth"
+    dependsOn "githubRelease"
+
+    doLast {
+      println "TEST ${subproject.name}"
+    }
   }
 }
 
 task publish {
-  subprojects.publish
+  dependsOn subprojects.publish
 }
