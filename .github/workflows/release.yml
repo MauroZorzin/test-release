@@ -23,17 +23,15 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    - name: Update mod_version in gradle.properties
-      run: |
-        awk -v new_version="${{ inputs.version }}" '/^mod_version=/ { print "mod_version=" new_version; next } 1' ./gradle.properties > gradle.properties.tmp && mv gradle.properties.tmp ./gradle.properties
-      
+    - name: Write to file
+      run: echo "version=2.0.0" > ./gradle.properties
     - name: Commit changes
       run: |
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@users.noreply.github.com'
-          git commit -am "Update Gradle version to ${{ inputs.version }}"
+          git commit -am "Update Gradle version to $new_version"
           git push
-          git push
+
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
