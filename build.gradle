@@ -16,7 +16,9 @@ sonar {
 }
 
 task publish {
-  dependsOn subprojects.tasks.publish
+  subprojects.each { subproject ->
+    dependsOn subproject.tasks.publish
+  }
 }
 
 subprojects { subproject ->
