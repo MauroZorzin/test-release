@@ -70,5 +70,5 @@ jobs:
 
     - name: Publish 
       run: |
-        ./gradlew :publish -DGITHUB_TOKEN=${{ GITHUB_TOKEN }} -DCURSEFORGE_TOKEN=${{ CURSEFORGE_TOKEN }} -DMODRINTH_TOKEN=${{ MODRINTH_TOKEN }}
+        ./gradlew :publish -DGITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} -DCURSEFORGE_TOKEN=${{ secrets.CURSEFORGE_TOKEN }} -DMODRINTH_TOKEN=${{ secrets.MODRINTH_TOKEN }}
      
