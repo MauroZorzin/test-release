@@ -23,8 +23,10 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    - name: Echo PATH
-      run: echo "$PATH"
+    - name: Find gradle.properties
+      run: |
+          file_path=$(find . -name "gradle.properties" | head -n 1)
+          echo "gradle.properties found at: $file_path"
     - uses: pocket-apps/action-update-version@v1
       with:
         files: 'gradle.properties'
