@@ -23,10 +23,12 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    - name: Echo PATH
+      run: echo "$PATH"
     - uses: pocket-apps/action-update-version@v1
       with:
         files: 'gradle.properties'
-        version-regexp: '\d+.\d+.\d+'
+        version-regexp: '\d+.\d+.\d+.\d'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Set up JDK 17
       uses: actions/setup-java@v3
