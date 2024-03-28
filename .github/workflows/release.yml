@@ -25,7 +25,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Update mod_version in gradle.properties
       run: |
-          sed -i 's/^mod_version=.*/mod_version='"${{ inputs.version }}"'/' gradle.properties
+          sed -i 's/^mod_version=.*/mod_version='"${{ inputs.version }}"'/' ./gradle.properties
     - name: Commit changes
       run: |
           git config --global user.name 'GitHub Actions'
