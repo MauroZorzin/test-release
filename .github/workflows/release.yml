@@ -63,14 +63,16 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to create releases
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # Needed for Sonar analysis
-        CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
-        MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
       run: |
         ./gradlew wrapper --gradle-version 8.3
         ./gradlew build 
         ./gradlew sonar --stacktrace
 
     - name: Publish 
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+        CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
       run: |
-        ./gradlew :publish -DGITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} -DCURSEFORGE_TOKEN=${{ secrets.CURSEFORGE_TOKEN }} -DMODRINTH_TOKEN=${{ secrets.MODRINTH_TOKEN }}
+        ./gradlew publish
      
