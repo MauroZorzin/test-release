@@ -15,12 +15,6 @@ sonar {
   }
 }
 
-task publish {
-  subprojects.each { subproject ->
-    dependsOn subproject.tasks.publish
-  }
-}
-
 subprojects { subproject ->
   apply plugin: "java"
   apply plugin: "com.modrinth.minotaur"
@@ -200,5 +194,11 @@ subprojects { subproject ->
     dependsOn 'githubRelease'
     dependsOn 'modrinth'
     dependsOn 'curseforge'
+  }
+}
+
+task publish {
+  subprojects.each { subproject ->
+    dependsOn subproject.tasks.publish
   }
 }
