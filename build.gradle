@@ -194,7 +194,5 @@ subprojects { subproject ->
     dependsOn 'githubRelease'
     dependsOn 'modrinth'
     dependsOn 'curseforge'
-    tasks.named('modrinth').mustRunAfter 'githubRelease'
-    tasks.named('curseforge').mustRunAfter 'modrinth'
   }
 }
