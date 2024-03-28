@@ -77,5 +77,5 @@ jobs:
         export GITHUB_TOKEN=$GITHUB_TOKEN
         export CURSEFORGE_TOKEN=$CURSEFORGE_TOKEN
         export MODRINTH_TOKEN=$MODRINTH_TOKEN
-        ./gradlew publish --stacktrace
+        ./gradlew :myGradleTaskName -DGITHUB_TOKEN=${GITHUB_TOKEN} -DCURSEFORGE_TOKEN=${CURSEFORGE_TOKEN} -DMODRINTH_TOKEN=${MODRINTH_TOKEN}
      
