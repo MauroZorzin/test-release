@@ -43,7 +43,11 @@ jobs:
         path: ~/.gradle/caches
         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
         restore-keys: ${{ runner.os }}-gradle
-
+    - uses: pocket-apps/action-update-version@v1
+      with:
+        files: 'gradle.properties'
+        version-regexp: '\d+.\d+.\d+'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Set permission
       run: chmod +x ./gradlew
 
