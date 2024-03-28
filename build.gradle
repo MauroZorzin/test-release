@@ -192,7 +192,7 @@ subprojects { subproject ->
     }
   }
 
-  tasks.register('publish') {
+  task publish {
     group = "publishing"
     description = "Publish all loader specific versions to all platforms"
     dependsOn 'githubRelease'
