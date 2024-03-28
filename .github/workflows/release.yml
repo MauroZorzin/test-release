@@ -71,10 +71,6 @@ jobs:
         ./gradlew sonar --stacktrace
 
     - name: Publish 
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
-        MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
       run: |
-        ./gradlew :publish -DGITHUB_TOKEN=${{ env.GITHUB_TOKEN }} -DCURSEFORGE_TOKEN=${{ env.CURSEFORGE_TOKEN }} -DMODRINTH_TOKEN=${{ env.MODRINTH_TOKEN }}
+        ./gradlew :publish -DGITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} -DCURSEFORGE_TOKEN=${{ secrets.CURSEFORGE_TOKEN }} -DMODRINTH_TOKEN=${{ secrets.MODRINTH_TOKEN }}
      
