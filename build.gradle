@@ -15,6 +15,10 @@ sonar {
   }
 }
 
+task publish {
+  dependsOn subprojects.tasks.findAll { it.name == 'publish' }
+}
+
 subprojects { subproject ->
   apply plugin: "java"
   apply plugin: "com.modrinth.minotaur"
