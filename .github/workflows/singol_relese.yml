@@ -2,24 +2,43 @@ name: Manual Singol Release Workflow
 
 on:
   workflow_dispatch:
-    inputs:
-      loader:
-        type: choice
-        description: Loaders
-        options: 
-        - Forge
-        - Fabric
-        - NeoForge
-        - Common
-        - All
-      platform:
-        type: choice
-        description: Platforms
-        options: 
-        - Maven
-        - GitHub
-        - CurseForge
-        - Modrinth     
+     inputs:
+      loader_forge:
+        type: boolean
+        description: Forge Loader
+        default: false
+      loader_fabric:
+        type: boolean
+        description: Fabric Loader
+        default: false
+      loader_neoforge:
+        type: boolean
+        description: NeoForge Loader
+        default: false
+      loader_common:
+        type: boolean
+        description: Common Loader
+        default: false
+      loader_all:
+        type: boolean
+        description: All Loaders
+        default: false
+      platform_maven:
+        type: boolean
+        description: Publish to Maven
+        default: false
+      platform_github:
+        type: boolean
+        description: Publish to GitHub
+        default: false
+      platform_curseforge:
+        type: boolean
+        description: Publish to CurseForge
+        default: false
+      platform_modrinth:
+        type: boolean
+        description: Publish to Modrinth
+        default: false 
 
 jobs:
 
@@ -49,15 +68,30 @@ jobs:
       run: chmod +x ./gradlew
       
     - name: Build
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to create releases
-
       run: |
         ./gradlew wrapper --gradle-version 8.3
         ./gradlew build 
         
-    - name: Publish 
-
+    - name: Set Command
       run: |
-        ./gradlew publishAll
-     
+          if [ "${{ github.event.inputs.loader }}" == "All" ]; then
+            loaders=("Forge" "Fabric" "NeoForge" "Common")
+          else
+            loaders=("${{ github.event.inputs.loader }}")
+          fi
+
+          for loader in "${loaders[@]}"; do
+            if [ "${{ github.event.inputs.platform }}" == "Maven" ]; then
+              echo "./gradlew publishMaven${loader}"
+              # Replace 'echo "./gradlew publishMaven${loader}"' with your actual command
+            elif [ "${{ github.event.inputs.platform }}" == "GitHub" ]; then
+              echo "./gradlew publishGitHub${loader}"
+              # Replace 'echo "./gradlew publishGitHub${loader}"' with your actual command
+            elif [ "${{ github.event.inputs.platform }}" == "CurseForge" ]; then
+              echo "./gradlew publishCurseForge${loader}"
+              # Replace 'echo "./gradlew publishCurseForge${loader}"' with your actual command
+            elif [ "${{ github.event.inputs.platform }}" == "Modrinth" ]; then
+              echo "./gradlew publishModrinth${loader}"
+              # Replace 'echo "./gradlew publishModrinth${loader}"' with your actual command
+            fi
+          done
