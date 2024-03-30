@@ -19,10 +19,6 @@ on:
         type: boolean
         description: Common Loader
         default: false
-      loader_all:
-        type: boolean
-        description: All Loaders
-        default: false
       platform_maven:
         type: boolean
         description: Publish to Maven
