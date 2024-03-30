@@ -128,7 +128,7 @@ subprojects { subproject ->
     }
     publications {
       gpr(MavenPublication) {
-        artifactId = "${mod_id_kebab}-${loader}-${minecraft_version}"
+        artifactId = "${mod_id_kebab}-${loader.toLowerCase()}-${minecraft_version}"
         version = "${minecraft_version}-${mod_version}"
         from components.java
         pom {
