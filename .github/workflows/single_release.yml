@@ -85,15 +85,15 @@ jobs:
           fi
           for loader in "${loaders[@]}"; do
             if [ "${{ github.event.inputs.platform_maven }}" == "true" ]; then
-              ./gradlew ${loader^}/publish
+              ./gradlew ${loader}/publish
             fi
             if [ "${{ github.event.inputs.platform_github }}" == "true" ]; then
-              ./gradlew ${loader^}/githubRelease
+              ./gradlew ${loader}/githubRelease
             fi
             if [ "${{ github.event.inputs.platform_curseforge }}" == "true" ]; then
-              ./gradlew ${loader^}/curseforge
+              ./gradlew ${loader}/curseforge
             fi
             if [ "${{ github.event.inputs.platform_modrinth }}" == "true" ]; then
-              ./gradlew ${loader^}/modrinth
+              ./gradlew ${loader}/modrinth
             fi
           done
