@@ -18,9 +18,10 @@ on:
       loader_common:
         type: boolean
         description: |
-          Common Loader
-          
+          Common Loader  
+          -
           -------------------------------
+          -
           
         default: false
       platform_maven:
