@@ -17,7 +17,10 @@ on:
         default: false
       loader_common:
         type: boolean
-        description: Common Loader \n --------------
+        description: |
+          Forge Loader:
+          Toggle to include Forge loader in the release.
+          Enabling this option will include support for Forge mod loader.
         default: false
       platform_maven:
         type: boolean
