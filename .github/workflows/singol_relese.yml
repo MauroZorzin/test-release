@@ -70,24 +70,31 @@ jobs:
         
     - name: Set Command
       run: |
-          if [ "${{ github.event.inputs.loader }}" == "All" ]; then
-            loaders=("Forge" "Fabric" "NeoForge" "Common")
-          else
-            loaders=("${{ github.event.inputs.loader }}")
+          loaders=()
+          if [ ${{ github.event.inputs.loader_forge }} == true ]; then
+            loaders+=("Forge")
+          fi
+          if [ ${{ github.event.inputs.loader_fabric }} == true ]; then
+            loaders+=("Fabric")
+          fi
+          if [ ${{ github.event.inputs.loader_neoforge }} == true ]; then
+            loaders+=("NeoForge")
+          fi
+          if [ ${{ github.event.inputs.loader_common }} == true ]; then
+            loaders+=("Common")
           fi
 
           for loader in "${loaders[@]}"; do
-            if [ "${{ github.event.inputs.platform }}" == "Maven" ]; then
-              echo "./gradlew publishMaven${loader}"
-              # Replace 'echo "./gradlew publishMaven${loader}"' with your actual command
-            elif [ "${{ github.event.inputs.platform }}" == "GitHub" ]; then
-              echo "./gradlew publishGitHub${loader}"
-              # Replace 'echo "./gradlew publishGitHub${loader}"' with your actual command
-            elif [ "${{ github.event.inputs.platform }}" == "CurseForge" ]; then
-              echo "./gradlew publishCurseForge${loader}"
-              # Replace 'echo "./gradlew publishCurseForge${loader}"' with your actual command
-            elif [ "${{ github.event.inputs.platform }}" == "Modrinth" ]; then
-              echo "./gradlew publishModrinth${loader}"
-              # Replace 'echo "./gradlew publishModrinth${loader}"' with your actual command
+            if [ ${{ github.event.inputs.platform_maven }} == true ]; then
+              ./gradlew publish${loader^}Maven
             fi
-          done
+            if [ ${{ github.event.inputs.platform_github }} == true ]; then
+              ./gradlew publish${loader^}GitHub
+            fi
+            if [ ${{ github.event.inputs.platform_curseforge }} == true ]; then
+              ./gradlew publish${loader^}Curseforge
+            fi
+            if [ ${{ github.event.inputs.platform_modrinth }} == true ]; then
+              ./gradlew publish${loader^}Modrinth
+            fi
+            done
