@@ -71,30 +71,29 @@ jobs:
     - name: Set Command
       run: |
           loaders=()
-          if [ ${{ github.event.inputs.loader_forge }} == true ]; then
-            loaders+=("Forge")
+          if [ "${{ github.event.inputs.loader_forge }}" == "true" ]; then
+            loaders+=("forge")
           fi
-          if [ ${{ github.event.inputs.loader_fabric }} == true ]; then
-            loaders+=("Fabric")
+          if [ "${{ github.event.inputs.loader_fabric }}" == "true" ]; then
+            loaders+=("fabric")
           fi
-          if [ ${{ github.event.inputs.loader_neoforge }} == true ]; then
-            loaders+=("NeoForge")
+          if [ "${{ github.event.inputs.loader_neoforge }}" == "true" ]; then
+            loaders+=("neoforge")
           fi
-          if [ ${{ github.event.inputs.loader_common }} == true ]; then
-            loaders+=("Common")
+          if [ "${{ github.event.inputs.loader_common }}" == "true" ]; then
+            loaders+=("common")
           fi
-
           for loader in "${loaders[@]}"; do
-            if [ ${{ github.event.inputs.platform_maven }} == true ]; then
-              ./gradlew publish${loader^}Maven
+            if [ "${{ github.event.inputs.platform_maven }}" == "true" ]; then
+              ./gradlew ${loader^}/publish
             fi
-            if [ ${{ github.event.inputs.platform_github }} == true ]; then
-              ./gradlew publish${loader^}GitHub
+            if [ "${{ github.event.inputs.platform_github }}" == "true" ]; then
+              ./gradlew ${loader^}/githubRelease
             fi
-            if [ ${{ github.event.inputs.platform_curseforge }} == true ]; then
-              ./gradlew publish${loader^}Curseforge
+            if [ "${{ github.event.inputs.platform_curseforge }}" == "true" ]; then
+              ./gradlew ${loader^}/curseforge
             fi
-            if [ ${{ github.event.inputs.platform_modrinth }} == true ]; then
-              ./gradlew publish${loader^}Modrinth
+            if [ "${{ github.event.inputs.platform_modrinth }}" == "true" ]; then
+              ./gradlew ${loader^}/modrinth
             fi
-            done
+          done
