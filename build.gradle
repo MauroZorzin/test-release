@@ -243,30 +243,6 @@ subprojects { subproject ->
   }
 }
 
-tasks.register("publishAllMaven") {
-  group = "publishing"
-  description = "Publish all loader specific versions to Maven (GitHub Packages)"
-  dependsOn subprojects.publish
-}
-
-tasks.register("publishAllGithub") {
-  group = "publishing"
-  description = "Publish all loader specific versions to GitHub"
-  dependsOn subprojects.githubRelease
-}
-
-tasks.register("publishAllCurseforge") {
-  group = "publishing"
-  description = "Publish all loader specific versions to CurseForge"
-  dependsOn subprojects.curseforge
-}
-
-tasks.register("publishAllModrinth") {
-  group = "publishing"
-  description = "Publish all loader specific versions to Modrinth"
-  dependsOn subprojects.modrinth
-}
-
 tasks.register("publishAll") {
   group = "publishing"
   description = "Publish all loader specific versions to all platforms"
