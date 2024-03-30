@@ -146,10 +146,10 @@ subprojects { subproject ->
             }
           }
           developers {
-            mod_authors.split(", ").each {
+            mod_authors.split(", ").each { author ->
               developer {
-                id = it.toLowerCase()
-                name = it
+                id = author.toLowerCase()
+                name = author
               }
             }
           }
