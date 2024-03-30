@@ -18,11 +18,9 @@ on:
       loader_common:
         type: boolean
         description: |
-          Common Loader: 
-          Babsbdbsbbssbs
-          -------------------------------
-          sbbssbbsbsbsb
-          
+          Forge Loader:
+          Toggle to include Forge loader in the release.
+          Enabling this option will include support for Forge mod loader.
         default: false
       platform_maven:
         type: boolean
