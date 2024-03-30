@@ -211,9 +211,9 @@ subprojects { subproject ->
     group = "publishing"
     description = "Publish all loader specific versions to all platforms"
     dependsOn "publish"
-    dependsOn "githubRelease"
-    dependsOn "curseforge"
-    dependsOn "modrinth"
+    // dependsOn "githubRelease"
+    // dependsOn "curseforge"
+    // dependsOn "modrinth"
   }
 }
 
