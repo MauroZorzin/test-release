@@ -6,14 +6,6 @@ on:
       version:
         description: 'Version number'
         required: true
-      draft:
-        description: 'Whether to create the release as a draft'
-        required: false
-        default: false
-      prerelease:
-        description: 'Whether to mark the release as a prerelease'
-        required: false
-        default: false
 
 jobs:
 
