@@ -1,14 +1,14 @@
-![Cobweb Mod Template banner](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/cobweb-mod-template/banner.png "Cobweb Mod Template banner")
+![test release banner](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/test-release/banner.png "test release banner")
 
 ---
 
-![Minecraft](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/minecraft/minecraft.svg "Minecraft")[![1.20.4](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/minecraft/1-20-4.svg "1.20.4")](https://modrinth.com/mod/cobweb-mod-template/versions?g=1.20.4)
+![Minecraft](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/minecraft/minecraft.svg "Minecraft")[![1.20.4](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/minecraft/1-20-4.svg "1.20.4")](https://modrinth.com/mod/test-release/versions?g=1.20.4)
 
-![Loader](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/loader/loader.svg "Loader")[![NeoForge](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/loader/neoforge.svg "NeoForge")](https://modrinth.com/mod/cobweb-mod-template/versions?l=neoforge)![Separator](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/separator.svg)[![Forge](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/loader/forge.svg "Forge")](https://modrinth.com/mod/cobweb-mod-template/versions?l=forge)![Separator](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/separator.svg)[![Fabric](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/loader/fabric.svg "Fabric")](https://modrinth.com/mod/cobweb-mod-template/versions?l=fabric)
+![Loader](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/loader/loader.svg "Loader")[![NeoForge](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/loader/neoforge.svg "NeoForge")](https://modrinth.com/mod/test-release/versions?l=neoforge)![Separator](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/separator.svg)[![Forge](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/loader/forge.svg "Forge")](https://modrinth.com/mod/test-release/versions?l=forge)![Separator](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/separator.svg)[![Fabric](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/loader/fabric.svg "Fabric")](https://modrinth.com/mod/test-release/versions?l=fabric)
 
 ![Overlay](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/side/client-server.svg)
 
-![Issues](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/github/issues.svg "Issues")[![GitHub](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/github/github.svg "GitHub")](https://github.com/crystal-nest/cobweb-mod-template/issues)
+![Issues](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/github/issues.svg "Issues")[![GitHub](https://raw.githubusercontent.com/crystal-nest/mod-fancy-assets/main/github/github.svg "GitHub")](https://github.com/crystal-nest/test-release/issues)
 
 ---
 
@@ -43,8 +43,8 @@ To remove support for the ones you don't need just remove the plugin declaration
 
 ## **License and right of use**
 
-Feel free to use this mod template for any mod, just be sure to give credit and possibly link [here](https://github.com/crystal-nest/cobweb-mod-template#readme).  
-This project is published under the [GNU General Public License v3.0](https://github.com/crystal-nest/cobweb-mod-template/blob/master/LICENSE).
+Feel free to use this mod template for any mod, just be sure to give credit and possibly link [here](https://github.com/crystal-nest/test-release#readme).  
+This project is published under the [GNU General Public License v3.0](https://github.com/crystal-nest/test-release/blob/master/LICENSE).
 
 ## **Support us**
 
