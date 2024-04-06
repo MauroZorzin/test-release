@@ -1,3 +1,4 @@
+
 name: Manual Single Release Workflow
 
 on:
@@ -37,8 +38,9 @@ on:
         default: false 
 
 jobs:
-
   single_release:
+    permissions: 
+      contents: write
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
