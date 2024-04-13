@@ -1,4 +1,4 @@
-name: Manual Release Workflow
+name: Analyze Workflow
 
 on:
   workflow_call:
